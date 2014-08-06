@@ -8,6 +8,7 @@ var express = require('express'),
     app = express();
 
 app.set('port', process.env.PORT || 3300);
+//__dirname是node.js里面的全局变量，即取得执行的js所在的路径
 app.set('views', __dirname + '/views');
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
