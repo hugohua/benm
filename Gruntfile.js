@@ -6,6 +6,9 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
+        /**
+         *  将bower的文件copy到targetDir目录
+         */
         bower: {
             install: {
                 options: {
@@ -14,7 +17,7 @@ module.exports = function(grunt) {
                 }
             }
         },
-
+        //清除build文件夹
         clean: {
             build: ['build'],
             dev: {
@@ -23,6 +26,7 @@ module.exports = function(grunt) {
             prod: ['dist']
         },
 
+        //允许前端人员像开发服务器端node程序一样，模块化的开发项目
         browserify: {
             vendor: {
                 src: ['client/requires/**/*.js'],
@@ -56,6 +60,7 @@ module.exports = function(grunt) {
                     }
                 }
             },
+
             app: {
                 files: {
                     'build/app.js': ['client/src/main.js']
@@ -94,6 +99,7 @@ module.exports = function(grunt) {
             'build/<%= pkg.name %>.js': ['build/vendor.js', 'build/app.js']
         },
 
+        //copy文件到指定文件夹
         copy: {
             dev: {
                 files: [{
@@ -138,6 +144,7 @@ module.exports = function(grunt) {
         },
 
         // for changes to the front-end code
+        //监听文件变动 执行指定的task 针对前端代码
         watch: {
             scripts: {
                 files: ['client/templates/*.hbs', 'client/src/**/*.js'],
@@ -158,6 +165,8 @@ module.exports = function(grunt) {
         },
 
         // for changes to the node code
+        // 监听node服务器的文件变动
+        // https://github.com/ChrisWren/grunt-nodemon
         nodemon: {
             dev: {
                 options: {
@@ -187,6 +196,7 @@ module.exports = function(grunt) {
         },
 
         // mongod server launcher
+        //Run shell commands https://github.com/sindresorhus/grunt-shell
         shell: {
             mongo: {
                 command: 'mongod',

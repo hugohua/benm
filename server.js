@@ -22,6 +22,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser('some-secret-value-here'));
 app.use(app.router);
+//如果访问的是跟目录，设定静态文件目录
 app.use('/', express.static(path.join(__dirname, 'public')));
 
 // development only

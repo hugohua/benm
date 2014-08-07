@@ -1,6 +1,6 @@
 var home = require('../controllers/home'),
     contacts = require('../controllers/contacts');
-
+//路由
 module.exports.initialize = function(app) {
     app.get('/', home.index);
     app.get('/api/contacts', contacts.index);
